@@ -14,20 +14,10 @@
         tailwind.config = {
             theme: {
                 extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
+                    fontFamily: { sans: ['Inter', 'sans-serif'] },
                     colors: {
-                        minsal: {
-                            blue: '#00548F',
-                            light: '#E6F0F9',
-                            dark: '#003A63'
-                        },
-                        safety: {
-                            green: '#00BFA5',
-                            red: '#E53935',
-                            yellow: '#FFB300'
-                        }
+                        minsal: { blue: '#00548F', light: '#E6F0F9', dark: '#003A63' },
+                        safety: { green: '#00BFA5', red: '#E53935', yellow: '#FFB300' }
                     }
                 }
             }
@@ -39,13 +29,15 @@
 </head>
 <body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
 
+    <!-- Notificaciones (Toasts) -->
+    <div id="toast-container" class="fixed top-20 right-4 z-[100] space-y-2"></div>
+
     <!-- Navegación -->
     <nav class="bg-minsal-blue/85 backdrop-blur-md text-white shadow-md sticky top-0 z-40 border-b border-white/10 transition-all">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between h-16 items-center">
                 <div class="flex items-center gap-3">
-                    <!-- Logo: Busca 'logo.jpg'. Si falla, muestra el logo del Minsal de respaldo -->
-                    <img src="logo.jpg" alt="Logo Hospital de Frutillar" class="h-10 w-auto object-contain rounded bg-white/10 p-1" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ministerio_de_Salud_%28Chile%29_logo.svg/320px-Ministerio_de_Salud_%28Chile%29_logo.svg.png';">
+                    <img src="logo.jpg" alt="Logo Hospital" class="h-10 w-auto object-contain rounded bg-white/10 p-1" onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ministerio_de_Salud_%28Chile%29_logo.svg/320px-Ministerio_de_Salud_%28Chile%29_logo.svg.png';">
                     <div>
                         <h1 class="font-bold text-lg leading-tight">Prevención de Riesgos</h1>
                         <p class="text-xs text-blue-200">Hospital Frutillar</p>
@@ -60,297 +52,181 @@
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero -->
     <header class="bg-gradient-to-br from-minsal-dark to-minsal-blue text-white py-16">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
             <h2 class="text-3xl md:text-5xl font-bold mb-4">La seguridad es responsabilidad de todos</h2>
-            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
-                Accede a los protocolos actualizados, capacitaciones obligatorias y planes de emergencia del Hospital Frutillar.
-            </p>
-            <div class="flex justify-center gap-4">
-                <a href="#videos" class="bg-safety-green hover:bg-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition flex items-center gap-2">
-                    <i data-lucide="play-circle" class="h-5 w-5"></i> Ver Capacitaciones
-                </a>
-                <a href="#documentos" class="bg-white hover:bg-gray-100 text-minsal-blue font-semibold py-3 px-6 rounded-lg shadow-md transition flex items-center gap-2">
-                    <i data-lucide="file-text" class="h-5 w-5"></i> Descargar Planes
-                </a>
-            </div>
+            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">Gestión de capacitaciones y protocolos institucionales.</p>
         </div>
     </header>
 
-    <!-- Sección de Videos (Dinámica) -->
-    <section id="videos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="mb-10 flex items-center gap-3 border-b pb-4">
-            <i data-lucide="video" class="h-8 w-8 text-minsal-blue"></i>
-            <h3 class="text-2xl font-bold text-gray-900">Cápsulas y Capacitaciones</h3>
-        </div>
-        <div id="videos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <p class="text-gray-500 col-span-full">Cargando capacitaciones...</p>
-        </div>
-    </section>
+    <!-- Contenido Principal -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section id="videos" class="mb-20">
+            <div class="mb-10 flex items-center gap-3 border-b pb-4">
+                <i data-lucide="video" class="h-8 w-8 text-minsal-blue"></i>
+                <h3 class="text-2xl font-bold">Cápsulas y Capacitaciones</h3>
+            </div>
+            <div id="videos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-center italic text-gray-400">
+                Cargando base de datos...
+            </div>
+        </section>
 
-    <!-- Sección de Documentos (Dinámica) -->
-    <section id="documentos" class="py-16 bg-minsal-light">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <section id="documentos" class="mb-20">
             <div class="mb-10 flex items-center gap-3 border-b border-gray-300 pb-4">
                 <i data-lucide="folder-down" class="h-8 w-8 text-minsal-blue"></i>
-                <h3 class="text-2xl font-bold text-gray-900">Protocolos y Formularios</h3>
+                <h3 class="text-2xl font-bold">Protocolos y Formularios</h3>
             </div>
             <div class="bg-white rounded-xl shadow-md p-6">
-                <ul id="docs-container" class="divide-y divide-gray-100">
-                    <li class="py-4 text-gray-500">Cargando documentos...</li>
+                <ul id="docs-container" class="divide-y divide-gray-100 italic text-gray-400">
+                    Cargando documentos...
                 </ul>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Sección de Contacto -->
-    <section id="contacto" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-minsal-dark rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
-            <div class="p-10 md:w-1/2 text-white flex flex-col justify-center">
-                <h3 class="text-3xl font-bold mb-4">¿Tienes dudas o necesitas reportar un incidente?</h3>
-                <p class="text-blue-200 mb-8">La Unidad de Prevención de Riesgos está disponible para asesorar a todos los funcionarios del hospital.</p>
-                
-                <div class="space-y-4">
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="user" class="h-6 w-6 text-safety-green"></i></div>
-                        <div>
-                            <p class="text-sm text-blue-200">Experto en Prevención</p>
-                            <p class="font-bold text-lg">Pablo Vásquez Soto</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="phone" class="h-6 w-6 text-safety-green"></i></div>
-                        <div>
-                            <p class="text-sm text-blue-200">Anexo Institucional</p>
-                            <p class="font-bold text-lg">656919</p>
-                        </div>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="mail" class="h-6 w-6 text-safety-green"></i></div>
-                        <div>
-                            <p class="text-sm text-blue-200">Correo Electrónico</p>
-                            <p class="font-bold text-lg">pablovasquez@ssdr.gob.cl</p>
-                        </div>
-                    </div>
+    <!-- Contacto -->
+    <section id="contacto" class="py-12 bg-gray-100">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h3 class="text-2xl font-bold mb-6">Unidad de Prevención de Riesgos</h3>
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-500">Experto</p>
+                    <p class="font-bold">Pablo Vásquez Soto</p>
                 </div>
-            </div>
-            <div class="md:w-1/2 bg-gray-100 p-10 flex items-center justify-center relative">
-                <div class="text-center">
-                    <i data-lucide="hard-hat" class="h-32 w-32 text-gray-300 mx-auto mb-4"></i>
-                    <p class="text-gray-500 font-medium">Unidad de Prevención de Riesgos</p>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-500">Anexo</p>
+                    <p class="font-bold">656919</p>
+                </div>
+                <div class="bg-white p-4 rounded-lg shadow">
+                    <p class="text-sm text-gray-500">Email</p>
+                    <p class="font-bold text-xs">pablovasquez@ssdr.gob.cl</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm relative">
-        <div class="max-w-7xl mx-auto px-4">
-            <p>&copy; 2026 Hospital de Frutillar - Todos los derechos reservados.</p>
-            <p class="mt-2">Desarrollado para la Intranet Institucional.</p>
-        </div>
-        <!-- Botón Oculto de Administrador (Punto oscuro) -->
-        <button id="trigger-login-btn" class="absolute bottom-4 right-4 text-gray-800 hover:text-gray-600 focus:outline-none">
-            &#x2022;
-        </button>
+    <footer class="bg-gray-900 text-gray-500 py-6 text-center text-xs">
+        <p>&copy; 2026 Hospital Frutillar • <button id="trigger-login-btn" class="hover:text-white">Acceso Admin</button></p>
     </footer>
 
-    <!-- MODAL DE LOGIN (Oculto) -->
-    <div id="login-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
-        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full">
-            <div class="flex justify-between items-center mb-6">
-                <h3 class="text-xl font-bold text-gray-800">Acceso Administrador</h3>
-                <button id="close-login-btn" class="text-gray-500 hover:text-gray-800"><i data-lucide="x" class="w-5 h-5"></i></button>
-            </div>
-            <p class="text-sm text-gray-600 mb-4">Ingrese la clave de prevención para gestionar el contenido.</p>
-            <input type="password" id="admin-password" class="w-full border rounded-lg px-4 py-2 mb-4 focus:ring-2 focus:ring-minsal-blue outline-none" placeholder="Clave de acceso">
-            <p id="login-error" class="text-red-500 text-sm hidden mb-4">Clave incorrecta.</p>
-            <button id="submit-login-btn" class="w-full bg-minsal-blue hover:bg-minsal-dark text-white font-bold py-2 px-4 rounded-lg transition">Ingresar</button>
-        </div>
-    </div>
-
-    <!-- MODAL PANEL DE ADMINISTRACIÓN (Oculto) -->
-    <div id="admin-panel" class="hidden fixed inset-0 bg-gray-100 z-50 overflow-y-auto">
-        <div class="bg-minsal-dark text-white p-4 sticky top-0 shadow-md flex justify-between items-center z-10">
-            <div class="flex items-center gap-2">
-                <i data-lucide="settings" class="w-6 h-6"></i>
-                <h2 class="font-bold text-lg">Panel de Administración</h2>
-            </div>
-            <button id="close-admin-btn" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-semibold transition">Cerrar Sesión</button>
-        </div>
-
-        <div class="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <!-- Formulario Videos -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border">
-                <h3 class="font-bold text-xl mb-4 border-b pb-2 flex items-center gap-2"><i data-lucide="video" class="w-5 h-5 text-minsal-blue"></i> Agregar Capacitación</h3>
-                <form id="form-video" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Título</label>
-                        <input type="text" id="v-title" required class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Descripción Breve</label>
-                        <textarea id="v-desc" required class="mt-1 w-full border rounded-md p-2" rows="2"></textarea>
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">URL del Video (.mp4)</label>
-                        <input type="url" id="v-url" required class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">URL Carátula (Opcional)</label>
-                        <input type="url" id="v-thumb" class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Categoría</label>
-                            <input type="text" id="v-badge" required class="mt-1 w-full border rounded-md p-2">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Color</label>
-                            <select id="v-color" class="mt-1 w-full border rounded-md p-2">
-                                <option value="red">Rojo (Obligatorio)</option>
-                                <option value="yellow">Amarillo (Técnico)</option>
-                                <option value="green">Verde (Salud)</option>
-                                <option value="blue">Azul (General)</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-safety-green hover:bg-teal-500 text-white font-bold py-2 rounded-lg">Guardar Video</button>
-                </form>
-
-                <div class="mt-8">
-                    <h4 class="font-bold text-gray-600 mb-2">Videos Publicados</h4>
-                    <ul id="admin-videos-list" class="space-y-2 text-sm"></ul>
-                </div>
-            </div>
-
-            <!-- Formulario Documentos -->
-            <div class="bg-white p-6 rounded-xl shadow-sm border">
-                <h3 class="font-bold text-xl mb-4 border-b pb-2 flex items-center gap-2"><i data-lucide="folder-down" class="w-5 h-5 text-minsal-blue"></i> Agregar Documento</h3>
-                <form id="form-doc" class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Nombre</label>
-                        <input type="text" id="d-title" required class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">Detalle / Fecha</label>
-                        <input type="text" id="d-subtitle" class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700">URL del PDF</label>
-                        <input type="url" id="d-url" required class="mt-1 w-full border rounded-md p-2">
-                    </div>
-                    <div class="grid grid-cols-2 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Ícono</label>
-                            <select id="d-icon" class="mt-1 w-full border rounded-md p-2">
-                                <option value="file-warning">Alerta</option>
-                                <option value="file-spreadsheet">Formulario</option>
-                                <option value="clipboard-check">Checklist</option>
-                                <option value="file-text">Documento</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Color Ícono</label>
-                            <select id="d-color" class="mt-1 w-full border rounded-md p-2">
-                                <option value="red">Rojo</option>
-                                <option value="blue">Azul</option>
-                                <option value="green">Verde</option>
-                            </select>
-                        </div>
-                    </div>
-                    <button type="submit" class="w-full bg-minsal-blue hover:bg-minsal-dark text-white font-bold py-2 rounded-lg">Guardar Documento</button>
-                </form>
-
-                <div class="mt-8">
-                    <h4 class="font-bold text-gray-600 mb-2">Documentos Publicados</h4>
-                    <ul id="admin-docs-list" class="space-y-2 text-sm"></ul>
-                </div>
+    <!-- Modal Login -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full">
+            <h3 class="text-xl font-bold mb-4">Administración</h3>
+            <input type="password" id="admin-password" class="w-full border rounded-lg px-4 py-2 mb-4" placeholder="Clave">
+            <div class="flex gap-2">
+                <button id="close-login-btn" class="flex-1 bg-gray-200 py-2 rounded-lg">Cancelar</button>
+                <button id="submit-login-btn" class="flex-1 bg-minsal-blue text-white py-2 rounded-lg font-bold">Entrar</button>
             </div>
         </div>
     </div>
 
+    <!-- Panel Admin -->
+    <div id="admin-panel" class="hidden fixed inset-0 bg-gray-50 z-50 overflow-y-auto">
+        <div class="bg-minsal-dark text-white p-4 flex justify-between items-center sticky top-0 shadow-lg">
+            <h2 class="font-bold flex items-center gap-2"><i data-lucide="settings"></i> Panel de Gestión</h2>
+            <button id="close-admin-btn" class="bg-red-500 px-4 py-1 rounded-md text-sm">Cerrar</button>
+        </div>
+        <div class="max-w-6xl mx-auto p-6 grid md:grid-cols-2 gap-8">
+            <!-- Form Video -->
+            <div class="bg-white p-6 rounded-xl border">
+                <h3 class="font-bold mb-4 border-b pb-2">Nueva Capacitación</h3>
+                <form id="form-video" class="space-y-3">
+                    <input type="text" id="v-title" placeholder="Título" required class="w-full border p-2 rounded">
+                    <textarea id="v-desc" placeholder="Descripción corta" required class="w-full border p-2 rounded"></textarea>
+                    <input type="url" id="v-url" placeholder="URL Video (.mp4)" required class="w-full border p-2 rounded">
+                    <div class="grid grid-cols-2 gap-2">
+                        <input type="text" id="v-badge" placeholder="Etiqueta" required class="w-full border p-2 rounded">
+                        <select id="v-color" class="w-full border p-2 rounded">
+                            <option value="red">Rojo</option>
+                            <option value="yellow">Amarillo</option>
+                            <option value="green">Verde</option>
+                            <option value="blue">Azul</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="w-full bg-safety-green text-white py-2 rounded font-bold">Publicar Video</button>
+                </form>
+                <ul id="admin-videos-list" class="mt-6 space-y-2 text-sm border-t pt-4"></ul>
+            </div>
+            <!-- Form Doc -->
+            <div class="bg-white p-6 rounded-xl border">
+                <h3 class="font-bold mb-4 border-b pb-2">Nuevo Documento</h3>
+                <form id="form-doc" class="space-y-3">
+                    <input type="text" id="d-title" placeholder="Nombre Documento" required class="w-full border p-2 rounded">
+                    <input type="text" id="d-subtitle" placeholder="Subtítulo/Fecha" required class="w-full border p-2 rounded">
+                    <input type="url" id="d-url" placeholder="URL PDF" required class="w-full border p-2 rounded">
+                    <select id="d-color" class="w-full border p-2 rounded">
+                        <option value="red">Rojo</option>
+                        <option value="blue">Azul</option>
+                        <option value="green">Verde</option>
+                    </select>
+                    <button type="submit" class="w-full bg-minsal-blue text-white py-2 rounded font-bold">Publicar Documento</button>
+                </form>
+                <ul id="admin-docs-list" class="mt-6 space-y-2 text-sm border-t pt-4"></ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Firebase Script -->
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
-        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
-        import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
 
-        // ==========================================
-        // CONFIGURACIÓN DE BASE DE DATOS (FIREBASE)
-        // ==========================================
-        const localFirebaseConfig = {
+        const firebaseConfig = {
             apiKey: "AIzaSyBAmWKj2g-vNDRSLDMjOAovvbwq4B8i1Yc",
             authDomain: "webpreven-a39eb.firebaseapp.com",
             projectId: "webpreven-a39eb",
             storageBucket: "webpreven-a39eb.firebasestorage.app",
             messagingSenderId: "688477868393",
-            appId: "1:688477868393:web:feeea73dad43f645282df8",
-            measurementId: "G-TF58DWPHZ9"
-        }; 
+            appId: "1:688477868393:web:feeea73dad43f645282df8"
+        };
 
-        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : localFirebaseConfig;
-        const appId = typeof __app_id !== 'undefined' ? __app_id : 'hospital-frutillar';
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const appId = 'hospital-frutillar';
         
-        let app, analytics, auth, db, currentUser;
+        let currentUser = null;
         let videosData = [];
         let docsData = [];
 
-        if (firebaseConfig) {
-            app = initializeApp(firebaseConfig);
-            if (firebaseConfig.measurementId) {
-                analytics = getAnalytics(app);
-            }
-            auth = getAuth(app);
-            db = getFirestore(app);
+        // UI Helpers
+        const showToast = (msg, type = 'success') => {
+            const toast = document.createElement('div');
+            toast.className = `p-4 rounded-lg shadow-lg text-white font-bold transition-all ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+            toast.textContent = msg;
+            document.getElementById('toast-container').appendChild(toast);
+            setTimeout(() => toast.remove(), 4000);
+        };
 
-            const initAuth = async () => {
-                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
-                    await signInWithCustomToken(auth, __initial_auth_token);
-                } else {
-                    await signInAnonymously(auth);
-                }
-            };
-            
-            initAuth();
-            
-            onAuthStateChanged(auth, (user) => {
+        // Auth
+        signInAnonymously(auth).catch(e => showToast("Error de conexión: " + e.message, 'error'));
+
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
                 currentUser = user;
-                if (user) {
-                    setupDatabaseListeners();
-                }
-            });
-        } else {
-            console.warn("Base de datos no configurada. Usa el panel temporalmente.");
-            // Datos de prueba temporales
-            videosData = [{ id: '1', title: 'Plan de Evacuación (Prueba)', description: 'Video de prueba. Conecta Firebase para guardar.', url: 'https://archive.org/download/SampleVideo1280x7205mb/SampleVideo_1280x720_5mb.mp4', thumbnail: '', badge: 'Obligatorio', badgeColor: 'red' }];
-            renderAll();
+                setupListeners();
+            }
+        });
+
+        function setupListeners() {
+            // Videos
+            onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'videos'), (snap) => {
+                videosData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderAll();
+            }, (e) => showToast("Error Firestore (Videos): " + e.message, 'error'));
+
+            // Documentos
+            onSnapshot(collection(db, 'artifacts', appId, 'public', 'data', 'documents'), (snap) => {
+                docsData = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+                renderAll();
+            }, (e) => showToast("Error Firestore (Docs): " + e.message, 'error'));
         }
 
-        function setupDatabaseListeners() {
-            if (!currentUser) return;
-
-            // Escuchar Videos
-            const videosRef = collection(db, 'artifacts', appId, 'public', 'data', 'videos');
-            onSnapshot(videosRef, (snapshot) => {
-                videosData = [];
-                snapshot.forEach(doc => videosData.push({ id: doc.id, ...doc.data() }));
-                renderAll();
-            }, (error) => console.error("Error cargando videos:", error));
-
-            // Escuchar Documentos
-            const docsRef = collection(db, 'artifacts', appId, 'public', 'data', 'documents');
-            onSnapshot(docsRef, (snapshot) => {
-                docsData = [];
-                snapshot.forEach(doc => docsData.push({ id: doc.id, ...doc.data() }));
-                renderAll();
-            }, (error) => console.error("Error cargando documentos:", error));
-        }
-
-        // -------------------------
-        // RENDERIZADO DE INTERFAZ
-        // -------------------------
+        // Render Logic
         const colorMap = {
             red: { bg: 'bg-red-100', text: 'text-safety-red', border: 'border-safety-red' },
             yellow: { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-safety-yellow' },
@@ -359,156 +235,99 @@
         };
 
         function renderAll() {
-            renderPublicVideos();
-            renderPublicDocs();
-            renderAdminVideos();
-            renderAdminDocs();
+            // Public Videos
+            document.getElementById('videos-container').innerHTML = videosData.length ? videosData.map(v => {
+                const colors = colorMap[v.badgeColor] || colorMap.blue;
+                return `
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition">
+                    <div class="aspect-video bg-black"><video class="w-full h-full" controls preload="metadata"><source src="${v.url}" type="video/mp4"></video></div>
+                    <div class="p-5 border-t-[4px] ${colors.border} text-left">
+                        <span class="inline-block ${colors.bg} ${colors.text} text-[10px] font-bold px-2 py-0.5 rounded mb-2">${v.badge}</span>
+                        <h4 class="font-bold text-gray-800 mb-1">${v.title}</h4>
+                        <p class="text-gray-500 text-xs">${v.description}</p>
+                    </div>
+                </div>`;
+            }).join('') : '<p class="text-gray-400 col-span-full py-10">No hay videos aún.</p>';
+
+            // Public Docs
+            document.getElementById('docs-container').innerHTML = docsData.length ? docsData.map(d => {
+                const colors = colorMap[d.iconColor] || colorMap.blue;
+                return `
+                <li class="py-4 flex items-center justify-between px-4">
+                    <div class="flex items-center gap-4 text-left">
+                        <div class="${colors.bg} p-2 rounded-lg ${colors.text}"><i data-lucide="file-text"></i></div>
+                        <div><p class="font-semibold text-gray-800">${d.title}</p><p class="text-[10px] text-gray-500">${d.subtitle}</p></div>
+                    </div>
+                    <a href="${d.url}" target="_blank" class="text-minsal-blue font-bold text-sm">Ver PDF</a>
+                </li>`;
+            }).join('') : '<li class="py-10 text-gray-400">No hay documentos aún.</li>';
+
+            // Admin Lists
+            document.getElementById('admin-videos-list').innerHTML = videosData.map(v => `<li class="flex justify-between border-b pb-1"><span>${v.title}</span><button onclick="window.del('videos','${v.id}')" class="text-red-500 font-bold">Eliminar</button></li>`).join('');
+            document.getElementById('admin-docs-list').innerHTML = docsData.map(d => `<li class="flex justify-between border-b pb-1"><span>${d.title}</span><button onclick="window.del('documents','${d.id}')" class="text-red-500 font-bold">Eliminar</button></li>`).join('');
+            
             lucide.createIcons();
         }
 
-        function renderPublicVideos() {
-            const container = document.getElementById('videos-container');
-            if (videosData.length === 0) {
-                container.innerHTML = `<p class="text-gray-500 col-span-full">No hay capacitaciones publicadas.</p>`;
-                return;
-            }
-            container.innerHTML = videosData.map(v => {
-                const colors = colorMap[v.badgeColor] || colorMap.blue;
-                const posterAttr = v.thumbnail ? `poster="${v.thumbnail}"` : '';
-                return `
-                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition duration-300">
-                    <div class="aspect-video bg-black relative">
-                        <video class="w-full h-full object-cover" controls preload="metadata" ${posterAttr}>
-                            <source src="${v.url}" type="video/mp4">
-                            Tu navegador no soporta videos.
-                        </video>
-                    </div>
-                    <div class="p-5 border-t-[4px] ${colors.border}">
-                        <span class="inline-block ${colors.bg} ${colors.text} text-xs font-bold px-2 py-1 rounded mb-2">${v.badge}</span>
-                        <h4 class="font-bold text-lg mb-2 text-gray-800">${v.title}</h4>
-                        <p class="text-gray-600 text-sm mb-4">${v.description}</p>
-                    </div>
-                </div>`;
-            }).join('');
-        }
-
-        function renderPublicDocs() {
-            const container = document.getElementById('docs-container');
-            if (docsData.length === 0) {
-                container.innerHTML = `<li class="py-4 text-gray-500">No hay documentos publicados.</li>`;
-                return;
-            }
-            container.innerHTML = docsData.map(d => {
-                const colors = colorMap[d.iconColor] || colorMap.blue;
-                return `
-                <li class="py-4 flex items-center justify-between hover:bg-gray-50 px-4 rounded-lg transition">
-                    <div class="flex items-center gap-4">
-                        <div class="${colors.bg} p-2 rounded-lg ${colors.text}">
-                            <i data-lucide="${d.icon}" class="h-6 w-6"></i>
-                        </div>
-                        <div>
-                            <p class="font-semibold text-gray-800">${d.title}</p>
-                            <p class="text-xs text-gray-500">${d.subtitle}</p>
-                        </div>
-                    </div>
-                    <a href="${d.url}" target="_blank" rel="noopener noreferrer" class="text-minsal-blue hover:text-blue-800 font-medium text-sm flex items-center gap-1">
-                        Descargar <i data-lucide="download" class="h-4 w-4"></i>
-                    </a>
-                </li>`;
-            }).join('');
-        }
-
-        function renderAdminVideos() {
-            document.getElementById('admin-videos-list').innerHTML = videosData.map(v => `
-                <li class="flex justify-between items-center bg-gray-50 p-2 rounded border">
-                    <span class="truncate pr-4"><strong>${v.title}</strong></span>
-                    <button onclick="window.deleteItem('videos', '${v.id}')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                </li>
-            `).join('');
-        }
-
-        function renderAdminDocs() {
-            document.getElementById('admin-docs-list').innerHTML = docsData.map(d => `
-                <li class="flex justify-between items-center bg-gray-50 p-2 rounded border">
-                    <span class="truncate pr-4"><strong>${d.title}</strong></span>
-                    <button onclick="window.deleteItem('documents', '${d.id}')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
-                </li>
-            `).join('');
-        }
-
-        // -------------------------
-        // LÓGICA DEL ADMINISTRADOR
-        // -------------------------
-        const loginBtn = document.getElementById('trigger-login-btn');
-        const loginModal = document.getElementById('login-modal');
-        const submitLoginBtn = document.getElementById('submit-login-btn');
-        const passInput = document.getElementById('admin-password');
-        const errorMsg = document.getElementById('login-error');
-        const adminPanel = document.getElementById('admin-panel');
-
-        loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
-        document.getElementById('close-login-btn').addEventListener('click', () => {
-            loginModal.classList.add('hidden');
-            passInput.value = '';
-            errorMsg.classList.add('hidden');
-        });
-
-        submitLoginBtn.addEventListener('click', () => {
-            if (passInput.value === 'prevencion2026') {
-                loginModal.classList.add('hidden');
-                adminPanel.classList.remove('hidden');
-                passInput.value = '';
-                errorMsg.classList.add('hidden');
-            } else {
-                errorMsg.classList.remove('hidden');
-            }
-        });
-
-        document.getElementById('close-admin-btn').addEventListener('click', () => adminPanel.classList.add('hidden'));
-
-        // Guardar en Firebase
-        document.getElementById('form-video').addEventListener('submit', async (e) => {
+        // Form Handlers
+        document.getElementById('form-video').onsubmit = async (e) => {
             e.preventDefault();
-            const newVideo = {
-                title: document.getElementById('v-title').value,
-                description: document.getElementById('v-desc').value,
-                url: document.getElementById('v-url').value,
-                thumbnail: document.getElementById('v-thumb').value,
-                badge: document.getElementById('v-badge').value,
-                badgeColor: document.getElementById('v-color').value,
-            };
+            if(!currentUser) return showToast("No autenticado", 'error');
+            try {
+                const data = {
+                    title: document.getElementById('v-title').value,
+                    description: document.getElementById('v-desc').value,
+                    url: document.getElementById('v-url').value,
+                    badge: document.getElementById('v-badge').value,
+                    badgeColor: document.getElementById('v-color').value,
+                    createdAt: serverTimestamp()
+                };
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'videos'), data);
+                showToast("Video guardado correctamente");
+                e.target.reset();
+            } catch (err) { showToast("Error: " + err.message, 'error'); }
+        };
 
-            if (db && currentUser) {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'videos'), newVideo);
-            }
-            e.target.reset();
-        });
-
-        document.getElementById('form-doc').addEventListener('submit', async (e) => {
+        document.getElementById('form-doc').onsubmit = async (e) => {
             e.preventDefault();
-            const newDoc = {
-                title: document.getElementById('d-title').value,
-                subtitle: document.getElementById('d-subtitle').value,
-                url: document.getElementById('d-url').value,
-                icon: document.getElementById('d-icon').value,
-                iconColor: document.getElementById('d-color').value,
-            };
+            if(!currentUser) return showToast("No autenticado", 'error');
+            try {
+                const data = {
+                    title: document.getElementById('d-title').value,
+                    subtitle: document.getElementById('d-subtitle').value,
+                    url: document.getElementById('d-url').value,
+                    iconColor: document.getElementById('d-color').value,
+                    createdAt: serverTimestamp()
+                };
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'documents'), data);
+                showToast("Documento guardado correctamente");
+                e.target.reset();
+            } catch (err) { showToast("Error: " + err.message, 'error'); }
+        };
 
-            if (db && currentUser) {
-                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'documents'), newDoc);
-            }
-            e.target.reset();
-        });
-
-        // Eliminar en Firebase
-        window.deleteItem = async (type, id) => {
-            if (db && currentUser) {
-                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', type, id));
+        window.del = async (col, id) => {
+            if(confirm("¿Eliminar este elemento?")) {
+                try {
+                    await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', col, id));
+                    showToast("Eliminado con éxito");
+                } catch (err) { showToast("Error al eliminar", 'error'); }
             }
         };
 
-        // Render inicial (por si no hay base de datos conectada)
-        renderAll();
+        // Modals
+        const loginModal = document.getElementById('login-modal');
+        const adminPanel = document.getElementById('admin-panel');
+        document.getElementById('trigger-login-btn').onclick = () => loginModal.classList.remove('hidden');
+        document.getElementById('close-login-btn').onclick = () => loginModal.classList.add('hidden');
+        document.getElementById('submit-login-btn').onclick = () => {
+            if(document.getElementById('admin-password').value === 'prevencion2026') {
+                loginModal.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+            } else { showToast("Clave incorrecta", 'error'); }
+        };
+        document.getElementById('close-admin-btn').onclick = () => adminPanel.classList.add('hidden');
+
+        lucide.createIcons();
     </script>
 </body>
 </html>
