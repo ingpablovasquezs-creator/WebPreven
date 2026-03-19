@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevención de Riesgos | Hospital Frutillar</title>
+    
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        minsal: {
+                            blue: '#00548F',
+                            light: '#E6F0F9',
+                            dark: '#003A63'
+                        },
+                        safety: {
+                            green: '#00BFA5',
+                            red: '#E53935',
+                            yellow: '#FFB300'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Íconos -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-gray-50 text-gray-800 font-sans antialiased relative">
+
+    <!-- Navegación -->
+    <nav class="bg-minsal-blue/85 backdrop-blur-md text-white shadow-md sticky top-0 z-40 border-b border-white/10 transition-all">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-3">
+                    <!-- Logo: Busca 'logo.jpg'. Si falla, muestra el logo del Minsal de respaldo -->
+                    <img src="logo.jpg" alt="Logo Hospital de Frutillar" class="h-10 w-auto object-contain rounded bg-white/10 p-1" onerror="this.onerror=null; this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Ministerio_de_Salud_%28Chile%29_logo.svg/320px-Ministerio_de_Salud_%28Chile%29_logo.svg.png';">
+                    <div>
+                        <h1 class="font-bold text-lg leading-tight">Prevención de Riesgos</h1>
+                        <p class="text-xs text-blue-200">Hospital Frutillar</p>
+                    </div>
+                </div>
+                <div class="hidden md:flex space-x-6 text-sm font-medium">
+                    <a href="#videos" class="hover:text-safety-green transition">Capacitaciones</a>
+                    <a href="#documentos" class="hover:text-safety-green transition">Protocolos</a>
+                    <a href="#contacto" class="hover:text-safety-green transition">Contacto</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-br from-minsal-dark to-minsal-blue text-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-3xl md:text-5xl font-bold mb-4">La seguridad es responsabilidad de todos</h2>
+            <p class="text-lg md:text-xl text-blue-100 max-w-2xl mx-auto mb-8">
+                Accede a los protocolos actualizados, capacitaciones obligatorias y planes de emergencia del Hospital Frutillar.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#videos" class="bg-safety-green hover:bg-teal-500 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition flex items-center gap-2">
+                    <i data-lucide="play-circle" class="h-5 w-5"></i> Ver Capacitaciones
+                </a>
+                <a href="#documentos" class="bg-white hover:bg-gray-100 text-minsal-blue font-semibold py-3 px-6 rounded-lg shadow-md transition flex items-center gap-2">
+                    <i data-lucide="file-text" class="h-5 w-5"></i> Descargar Planes
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Sección de Videos (Dinámica) -->
+    <section id="videos" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-10 flex items-center gap-3 border-b pb-4">
+            <i data-lucide="video" class="h-8 w-8 text-minsal-blue"></i>
+            <h3 class="text-2xl font-bold text-gray-900">Cápsulas y Capacitaciones</h3>
+        </div>
+        <div id="videos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <p class="text-gray-500 col-span-full">Cargando capacitaciones...</p>
+        </div>
+    </section>
+
+    <!-- Sección de Documentos (Dinámica) -->
+    <section id="documentos" class="py-16 bg-minsal-light">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-10 flex items-center gap-3 border-b border-gray-300 pb-4">
+                <i data-lucide="folder-down" class="h-8 w-8 text-minsal-blue"></i>
+                <h3 class="text-2xl font-bold text-gray-900">Protocolos y Formularios</h3>
+            </div>
+            <div class="bg-white rounded-xl shadow-md p-6">
+                <ul id="docs-container" class="divide-y divide-gray-100">
+                    <li class="py-4 text-gray-500">Cargando documentos...</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section id="contacto" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-minsal-dark rounded-2xl shadow-xl overflow-hidden flex flex-col md:flex-row">
+            <div class="p-10 md:w-1/2 text-white flex flex-col justify-center">
+                <h3 class="text-3xl font-bold mb-4">¿Tienes dudas o necesitas reportar un incidente?</h3>
+                <p class="text-blue-200 mb-8">La Unidad de Prevención de Riesgos está disponible para asesorar a todos los funcionarios del hospital.</p>
+                
+                <div class="space-y-4">
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="user" class="h-6 w-6 text-safety-green"></i></div>
+                        <div>
+                            <p class="text-sm text-blue-200">Experto en Prevención</p>
+                            <p class="font-bold text-lg">Pablo Vásquez Soto</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="phone" class="h-6 w-6 text-safety-green"></i></div>
+                        <div>
+                            <p class="text-sm text-blue-200">Anexo Institucional</p>
+                            <p class="font-bold text-lg">656919</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <div class="bg-white/10 p-3 rounded-full"><i data-lucide="mail" class="h-6 w-6 text-safety-green"></i></div>
+                        <div>
+                            <p class="text-sm text-blue-200">Correo Electrónico</p>
+                            <p class="font-bold text-lg">pablovasquez@ssdr.gob.cl</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-gray-100 p-10 flex items-center justify-center relative">
+                <div class="text-center">
+                    <i data-lucide="hard-hat" class="h-32 w-32 text-gray-300 mx-auto mb-4"></i>
+                    <p class="text-gray-500 font-medium">Unidad de Prevención de Riesgos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-8 text-center text-sm relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <p>&copy; 2026 Hospital de Frutillar - Todos los derechos reservados.</p>
+            <p class="mt-2">Desarrollado para la Intranet Institucional.</p>
+        </div>
+        <!-- Botón Oculto de Administrador (Punto oscuro) -->
+        <button id="trigger-login-btn" class="absolute bottom-4 right-4 text-gray-800 hover:text-gray-600 focus:outline-none">
+            &#x2022;
+        </button>
+    </footer>
+
+    <!-- MODAL DE LOGIN (Oculto) -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+        <div class="bg-white p-8 rounded-xl shadow-2xl max-w-sm w-full">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-xl font-bold text-gray-800">Acceso Administrador</h3>
+                <button id="close-login-btn" class="text-gray-500 hover:text-gray-800"><i data-lucide="x" class="w-5 h-5"></i></button>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Ingrese la clave de prevención para gestionar el contenido.</p>
+            <input type="password" id="admin-password" class="w-full border rounded-lg px-4 py-2 mb-4 focus:ring-2 focus:ring-minsal-blue outline-none" placeholder="Clave de acceso">
+            <p id="login-error" class="text-red-500 text-sm hidden mb-4">Clave incorrecta.</p>
+            <button id="submit-login-btn" class="w-full bg-minsal-blue hover:bg-minsal-dark text-white font-bold py-2 px-4 rounded-lg transition">Ingresar</button>
+        </div>
+    </div>
+
+    <!-- MODAL PANEL DE ADMINISTRACIÓN (Oculto) -->
+    <div id="admin-panel" class="hidden fixed inset-0 bg-gray-100 z-50 overflow-y-auto">
+        <div class="bg-minsal-dark text-white p-4 sticky top-0 shadow-md flex justify-between items-center z-10">
+            <div class="flex items-center gap-2">
+                <i data-lucide="settings" class="w-6 h-6"></i>
+                <h2 class="font-bold text-lg">Panel de Administración</h2>
+            </div>
+            <button id="close-admin-btn" class="bg-white/20 hover:bg-white/30 px-4 py-2 rounded-lg text-sm font-semibold transition">Cerrar Sesión</button>
+        </div>
+
+        <div class="max-w-6xl mx-auto p-6 grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- Formulario Videos -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border">
+                <h3 class="font-bold text-xl mb-4 border-b pb-2 flex items-center gap-2"><i data-lucide="video" class="w-5 h-5 text-minsal-blue"></i> Agregar Capacitación</h3>
+                <form id="form-video" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Título</label>
+                        <input type="text" id="v-title" required class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Descripción Breve</label>
+                        <textarea id="v-desc" required class="mt-1 w-full border rounded-md p-2" rows="2"></textarea>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">URL del Video (.mp4)</label>
+                        <input type="url" id="v-url" required class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">URL Carátula (Opcional)</label>
+                        <input type="url" id="v-thumb" class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Categoría</label>
+                            <input type="text" id="v-badge" required class="mt-1 w-full border rounded-md p-2">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Color</label>
+                            <select id="v-color" class="mt-1 w-full border rounded-md p-2">
+                                <option value="red">Rojo (Obligatorio)</option>
+                                <option value="yellow">Amarillo (Técnico)</option>
+                                <option value="green">Verde (Salud)</option>
+                                <option value="blue">Azul (General)</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-safety-green hover:bg-teal-500 text-white font-bold py-2 rounded-lg">Guardar Video</button>
+                </form>
+
+                <div class="mt-8">
+                    <h4 class="font-bold text-gray-600 mb-2">Videos Publicados</h4>
+                    <ul id="admin-videos-list" class="space-y-2 text-sm"></ul>
+                </div>
+            </div>
+
+            <!-- Formulario Documentos -->
+            <div class="bg-white p-6 rounded-xl shadow-sm border">
+                <h3 class="font-bold text-xl mb-4 border-b pb-2 flex items-center gap-2"><i data-lucide="folder-down" class="w-5 h-5 text-minsal-blue"></i> Agregar Documento</h3>
+                <form id="form-doc" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Nombre</label>
+                        <input type="text" id="d-title" required class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Detalle / Fecha</label>
+                        <input type="text" id="d-subtitle" class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">URL del PDF</label>
+                        <input type="url" id="d-url" required class="mt-1 w-full border rounded-md p-2">
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Ícono</label>
+                            <select id="d-icon" class="mt-1 w-full border rounded-md p-2">
+                                <option value="file-warning">Alerta</option>
+                                <option value="file-spreadsheet">Formulario</option>
+                                <option value="clipboard-check">Checklist</option>
+                                <option value="file-text">Documento</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Color Ícono</label>
+                            <select id="d-color" class="mt-1 w-full border rounded-md p-2">
+                                <option value="red">Rojo</option>
+                                <option value="blue">Azul</option>
+                                <option value="green">Verde</option>
+                            </select>
+                        </div>
+                    </div>
+                    <button type="submit" class="w-full bg-minsal-blue hover:bg-minsal-dark text-white font-bold py-2 rounded-lg">Guardar Documento</button>
+                </form>
+
+                <div class="mt-8">
+                    <h4 class="font-bold text-gray-600 mb-2">Documentos Publicados</h4>
+                    <ul id="admin-docs-list" class="space-y-2 text-sm"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-analytics.js";
+        import { getAuth, signInAnonymously, signInWithCustomToken, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+        import { getFirestore, collection, onSnapshot, addDoc, deleteDoc, doc } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+
+        // ==========================================
+        // CONFIGURACIÓN DE BASE DE DATOS (FIREBASE)
+        // ==========================================
+        const localFirebaseConfig = {
+            apiKey: "AIzaSyBAmWKj2g-vNDRSLDMjOAovvbwq4B8i1Yc",
+            authDomain: "webpreven-a39eb.firebaseapp.com",
+            projectId: "webpreven-a39eb",
+            storageBucket: "webpreven-a39eb.firebasestorage.app",
+            messagingSenderId: "688477868393",
+            appId: "1:688477868393:web:feeea73dad43f645282df8",
+            measurementId: "G-TF58DWPHZ9"
+        }; 
+
+        const firebaseConfig = typeof __firebase_config !== 'undefined' ? JSON.parse(__firebase_config) : localFirebaseConfig;
+        const appId = typeof __app_id !== 'undefined' ? __app_id : 'hospital-frutillar';
+        
+        let app, analytics, auth, db, currentUser;
+        let videosData = [];
+        let docsData = [];
+
+        if (firebaseConfig) {
+            app = initializeApp(firebaseConfig);
+            if (firebaseConfig.measurementId) {
+                analytics = getAnalytics(app);
+            }
+            auth = getAuth(app);
+            db = getFirestore(app);
+
+            const initAuth = async () => {
+                if (typeof __initial_auth_token !== 'undefined' && __initial_auth_token) {
+                    await signInWithCustomToken(auth, __initial_auth_token);
+                } else {
+                    await signInAnonymously(auth);
+                }
+            };
+            
+            initAuth();
+            
+            onAuthStateChanged(auth, (user) => {
+                currentUser = user;
+                if (user) {
+                    setupDatabaseListeners();
+                }
+            });
+        } else {
+            console.warn("Base de datos no configurada. Usa el panel temporalmente.");
+            // Datos de prueba temporales
+            videosData = [{ id: '1', title: 'Plan de Evacuación (Prueba)', description: 'Video de prueba. Conecta Firebase para guardar.', url: 'https://archive.org/download/SampleVideo1280x7205mb/SampleVideo_1280x720_5mb.mp4', thumbnail: '', badge: 'Obligatorio', badgeColor: 'red' }];
+            renderAll();
+        }
+
+        function setupDatabaseListeners() {
+            if (!currentUser) return;
+
+            // Escuchar Videos
+            const videosRef = collection(db, 'artifacts', appId, 'public', 'data', 'videos');
+            onSnapshot(videosRef, (snapshot) => {
+                videosData = [];
+                snapshot.forEach(doc => videosData.push({ id: doc.id, ...doc.data() }));
+                renderAll();
+            }, (error) => console.error("Error cargando videos:", error));
+
+            // Escuchar Documentos
+            const docsRef = collection(db, 'artifacts', appId, 'public', 'data', 'documents');
+            onSnapshot(docsRef, (snapshot) => {
+                docsData = [];
+                snapshot.forEach(doc => docsData.push({ id: doc.id, ...doc.data() }));
+                renderAll();
+            }, (error) => console.error("Error cargando documentos:", error));
+        }
+
+        // -------------------------
+        // RENDERIZADO DE INTERFAZ
+        // -------------------------
+        const colorMap = {
+            red: { bg: 'bg-red-100', text: 'text-safety-red', border: 'border-safety-red' },
+            yellow: { bg: 'bg-yellow-100', text: 'text-yellow-800', border: 'border-safety-yellow' },
+            green: { bg: 'bg-green-100', text: 'text-safety-green', border: 'border-safety-green' },
+            blue: { bg: 'bg-blue-100', text: 'text-minsal-blue', border: 'border-minsal-blue' },
+        };
+
+        function renderAll() {
+            renderPublicVideos();
+            renderPublicDocs();
+            renderAdminVideos();
+            renderAdminDocs();
+            lucide.createIcons();
+        }
+
+        function renderPublicVideos() {
+            const container = document.getElementById('videos-container');
+            if (videosData.length === 0) {
+                container.innerHTML = `<p class="text-gray-500 col-span-full">No hay capacitaciones publicadas.</p>`;
+                return;
+            }
+            container.innerHTML = videosData.map(v => {
+                const colors = colorMap[v.badgeColor] || colorMap.blue;
+                const posterAttr = v.thumbnail ? `poster="${v.thumbnail}"` : '';
+                return `
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition duration-300">
+                    <div class="aspect-video bg-black relative">
+                        <video class="w-full h-full object-cover" controls preload="metadata" ${posterAttr}>
+                            <source src="${v.url}" type="video/mp4">
+                            Tu navegador no soporta videos.
+                        </video>
+                    </div>
+                    <div class="p-5 border-t-[4px] ${colors.border}">
+                        <span class="inline-block ${colors.bg} ${colors.text} text-xs font-bold px-2 py-1 rounded mb-2">${v.badge}</span>
+                        <h4 class="font-bold text-lg mb-2 text-gray-800">${v.title}</h4>
+                        <p class="text-gray-600 text-sm mb-4">${v.description}</p>
+                    </div>
+                </div>`;
+            }).join('');
+        }
+
+        function renderPublicDocs() {
+            const container = document.getElementById('docs-container');
+            if (docsData.length === 0) {
+                container.innerHTML = `<li class="py-4 text-gray-500">No hay documentos publicados.</li>`;
+                return;
+            }
+            container.innerHTML = docsData.map(d => {
+                const colors = colorMap[d.iconColor] || colorMap.blue;
+                return `
+                <li class="py-4 flex items-center justify-between hover:bg-gray-50 px-4 rounded-lg transition">
+                    <div class="flex items-center gap-4">
+                        <div class="${colors.bg} p-2 rounded-lg ${colors.text}">
+                            <i data-lucide="${d.icon}" class="h-6 w-6"></i>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-gray-800">${d.title}</p>
+                            <p class="text-xs text-gray-500">${d.subtitle}</p>
+                        </div>
+                    </div>
+                    <a href="${d.url}" target="_blank" rel="noopener noreferrer" class="text-minsal-blue hover:text-blue-800 font-medium text-sm flex items-center gap-1">
+                        Descargar <i data-lucide="download" class="h-4 w-4"></i>
+                    </a>
+                </li>`;
+            }).join('');
+        }
+
+        function renderAdminVideos() {
+            document.getElementById('admin-videos-list').innerHTML = videosData.map(v => `
+                <li class="flex justify-between items-center bg-gray-50 p-2 rounded border">
+                    <span class="truncate pr-4"><strong>${v.title}</strong></span>
+                    <button onclick="window.deleteItem('videos', '${v.id}')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </li>
+            `).join('');
+        }
+
+        function renderAdminDocs() {
+            document.getElementById('admin-docs-list').innerHTML = docsData.map(d => `
+                <li class="flex justify-between items-center bg-gray-50 p-2 rounded border">
+                    <span class="truncate pr-4"><strong>${d.title}</strong></span>
+                    <button onclick="window.deleteItem('documents', '${d.id}')" class="text-red-500 hover:text-red-700 p-1"><i data-lucide="trash-2" class="w-4 h-4"></i></button>
+                </li>
+            `).join('');
+        }
+
+        // -------------------------
+        // LÓGICA DEL ADMINISTRADOR
+        // -------------------------
+        const loginBtn = document.getElementById('trigger-login-btn');
+        const loginModal = document.getElementById('login-modal');
+        const submitLoginBtn = document.getElementById('submit-login-btn');
+        const passInput = document.getElementById('admin-password');
+        const errorMsg = document.getElementById('login-error');
+        const adminPanel = document.getElementById('admin-panel');
+
+        loginBtn.addEventListener('click', () => loginModal.classList.remove('hidden'));
+        document.getElementById('close-login-btn').addEventListener('click', () => {
+            loginModal.classList.add('hidden');
+            passInput.value = '';
+            errorMsg.classList.add('hidden');
+        });
+
+        submitLoginBtn.addEventListener('click', () => {
+            if (passInput.value === 'prevencion2026') {
+                loginModal.classList.add('hidden');
+                adminPanel.classList.remove('hidden');
+                passInput.value = '';
+                errorMsg.classList.add('hidden');
+            } else {
+                errorMsg.classList.remove('hidden');
+            }
+        });
+
+        document.getElementById('close-admin-btn').addEventListener('click', () => adminPanel.classList.add('hidden'));
+
+        // Guardar en Firebase
+        document.getElementById('form-video').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newVideo = {
+                title: document.getElementById('v-title').value,
+                description: document.getElementById('v-desc').value,
+                url: document.getElementById('v-url').value,
+                thumbnail: document.getElementById('v-thumb').value,
+                badge: document.getElementById('v-badge').value,
+                badgeColor: document.getElementById('v-color').value,
+            };
+
+            if (db && currentUser) {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'videos'), newVideo);
+            }
+            e.target.reset();
+        });
+
+        document.getElementById('form-doc').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const newDoc = {
+                title: document.getElementById('d-title').value,
+                subtitle: document.getElementById('d-subtitle').value,
+                url: document.getElementById('d-url').value,
+                icon: document.getElementById('d-icon').value,
+                iconColor: document.getElementById('d-color').value,
+            };
+
+            if (db && currentUser) {
+                await addDoc(collection(db, 'artifacts', appId, 'public', 'data', 'documents'), newDoc);
+            }
+            e.target.reset();
+        });
+
+        // Eliminar en Firebase
+        window.deleteItem = async (type, id) => {
+            if (db && currentUser) {
+                await deleteDoc(doc(db, 'artifacts', appId, 'public', 'data', type, id));
+            }
+        };
+
+        // Render inicial (por si no hay base de datos conectada)
+        renderAll();
+    </script>
+</body>
+</html>
